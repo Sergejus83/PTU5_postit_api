@@ -1,7 +1,7 @@
 import requests
 from pprint import pprint
 
-reqUrl = "http://127.0.0.1:8000/post/"
+reqUrl = "http://127.0.0.1:8000/posts/"
 
 headersList = {
  "Accept": "*/*",

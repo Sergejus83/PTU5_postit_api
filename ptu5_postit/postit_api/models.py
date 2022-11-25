@@ -27,7 +27,7 @@ class Post(models.Model):
         ordering = ('-created_at', )
 
 
-class Comments(models.Model):
+class Comment(models.Model):
     post = models.ForeignKey(
         Post, 
         verbose_name=_("post"), 

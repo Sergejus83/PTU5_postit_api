@@ -85,7 +85,7 @@ class PostLikeCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
 
     def perform_create(self, serializer):
         if self.get_queryset().exists():
-            raise ValidationError(_('Sorry! But you cannot LIKE more tnan once!'))
+            raise ValidationError(_('Sorry! But you can LIKE this post only once!'))
         user = self.request.user
         post = models.Post.objects.get(pk=self.kwargs['pk'])
         serializer.save(user=user, post=post)

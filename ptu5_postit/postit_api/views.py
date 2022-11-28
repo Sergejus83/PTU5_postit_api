@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from rest_framework import generics, permissions, mixins, status
 from rest_framework.exceptions import ValidationError
@@ -5,6 +6,7 @@ from rest_framework.response import Response
 from django.utils.translation import gettext_lazy as _
 from . import models, serializers
 
+User = get_user_model()
 
 # class PostList(generics.ListAPIView):
 #     queryset = models.Post.objects.all()
@@ -96,3 +98,8 @@ class PostLikeCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
             return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             raise ValidationError(_('You do not like this post!'))
+
+class UserCreate(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
+    permission_classes = [permissions.AllowAny]
